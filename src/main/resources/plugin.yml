@@ -1,0 +1,9 @@
+main: me.MrABCDevelopment.main.EDMMain
+name: Extra-DamageIndicator
+version: 1.0
+
+commands:
+  EdiReload:
+    permission: EDI.reload
+    permission-message: You do not have permission to use this command!
+
