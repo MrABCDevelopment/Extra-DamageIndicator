@@ -1,10 +1,12 @@
 package me.MrABCDevelopment.events;
 
+import javafx.scene.layout.Priority;
 import me.MrABCDevelopment.HologramsHandler;
 import me.MrABCDevelopment.main.EDMMain;
 import net.citizensnpcs.api.CitizensAPI;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
@@ -17,7 +19,7 @@ public class Damage implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void onDamage(EntityDamageByEntityEvent e) {
         if (e.isCancelled()) {
             return;
