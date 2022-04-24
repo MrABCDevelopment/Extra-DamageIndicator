@@ -1,6 +1,7 @@
 main: me.MrABCDevelopment.main.EDMMain
 name: Extra-DamageIndicator
-version: 1.0.1
+version: 1.0.2
+Author: MrABCDevelopment
 
 commands:
   EdiReload:

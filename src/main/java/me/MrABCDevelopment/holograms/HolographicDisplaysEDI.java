@@ -3,6 +3,7 @@ package me.MrABCDevelopment.holograms;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import me.MrABCDevelopment.HologramsAPI;
 import me.MrABCDevelopment.HologramsHandler;
+import me.MrABCDevelopment.main.EDMMain;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
@@ -22,7 +23,8 @@ public class HolographicDisplaysEDI implements HologramsAPI {
 
     @Override
     public void removeHologram() {
-
-
+        for (Hologram holograms : com.gmail.filoghost.holographicdisplays.api.HologramsAPI.getHolograms(EDMMain.getInstance())) {
+            holograms.delete();
+        }
     }
 }

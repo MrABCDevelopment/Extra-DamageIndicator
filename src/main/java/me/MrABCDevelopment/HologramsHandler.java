@@ -1,5 +1,6 @@
 package me.MrABCDevelopment;
 
+import me.MrABCDevelopment.holograms.HolographicDisplaysEDI;
 import me.MrABCDevelopment.main.EDMMain;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
