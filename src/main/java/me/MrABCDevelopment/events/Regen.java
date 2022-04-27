@@ -1,28 +1,28 @@
 package me.MrABCDevelopment.events;
 
-import javafx.scene.layout.Priority;
 import me.MrABCDevelopment.HealthChangeType;
 import me.MrABCDevelopment.HologramsHandler;
 import me.MrABCDevelopment.main.EDMMain;
 import net.citizensnpcs.api.CitizensAPI;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Animals;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
 
-public class Damage implements Listener {
+public class Regen implements Listener {
 
     EDMMain plugin;
 
-    public Damage(EDMMain plugin) {
-        this.plugin = plugin;
+    public Regen(EDMMain main) {
+        this.plugin = main;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
-
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onDamage(EntityDamageByEntityEvent e) {
-        if (e.isCancelled()) {
+    public void RegenEvent(EntityRegainHealthEvent e) {
+        if(e.isCancelled()) {
             return;
         }
         if(EDMMain.isCitizens)
@@ -34,19 +34,13 @@ public class Damage implements Listener {
         } else if(e.getEntity() instanceof Monster && !HologramsHandler.Types.get("Mob") ) {
             return;
         }
-        if(e.getEntity() instanceof ArmorStand) {
-            ArmorStand armorStand = (ArmorStand) e.getEntity();
-            if(!armorStand.isVisible())
-                e.setCancelled(true);
-            return;
-        }
-        if(HologramsHandler.dm == null || HologramsHandler.dm.equalsIgnoreCase("")) return;
+        if(HologramsHandler.rm == null || HologramsHandler.rm.equalsIgnoreCase("")) return;
         if(e.getEntity() instanceof Player && ((Player) e.getEntity()).isSneaking()) {
             if(!HologramsHandler.sneak)
                 return;
-            plugin.getHologramsHandler().getHologramsAPI().createHologram(e.getEntity().getLocation(), HealthChangeType.DAMAGE, Math.floor(e.getDamage()));
+            plugin.getHologramsHandler().getHologramsAPI().createHologram(e.getEntity().getLocation(), HealthChangeType.REGENERATION, Math.floor(e.getAmount()));
         } else {
-            plugin.getHologramsHandler().getHologramsAPI().createHologram(e.getEntity().getLocation(), HealthChangeType.DAMAGE, Math.floor(e.getDamage()));
+            plugin.getHologramsHandler().getHologramsAPI().createHologram(e.getEntity().getLocation(), HealthChangeType.REGENERATION, Math.floor(e.getAmount()));
         }
     }
 

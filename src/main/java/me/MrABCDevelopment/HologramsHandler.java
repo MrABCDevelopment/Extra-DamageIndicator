@@ -17,7 +17,9 @@ public class HologramsHandler {
     private HologramsAPI hologramsAPI;
     public static HashMap<ArmorStand, Long> ArmorStands;
     public static HashMap<String, Boolean> Types;
-    public static String m;
+    public static String dm;
+    public static String rm;
+    public static boolean sneak;
     public static int y;
     public static int c;
     BukkitScheduler scheduler = Bukkit.getScheduler();
@@ -50,7 +52,9 @@ public class HologramsHandler {
         for(String key : section.getKeys(false))
             Types.put(key, section.getBoolean(key));
         c = config.getInt("cooldown");
-        m = ChatColor.translateAlternateColorCodes('&', config.getString("message"));
+        dm = ChatColor.translateAlternateColorCodes('&', config.getString("Damage-Message"));
+        rm = ChatColor.translateAlternateColorCodes('&', config.getString("Regeneration-Message"));
+        sneak = config.getBoolean("Sneaking");
         y = config.getInt("y");
         hologramsAPI.removeHologram();
     }
@@ -72,8 +76,10 @@ public class HologramsHandler {
     public void ReloadVariables() {
         FileConfiguration config = plugin.getConfig();
         c = config.getInt("cooldown");
-        m = ChatColor.translateAlternateColorCodes('&', config.getString("message"));
+        dm = ChatColor.translateAlternateColorCodes('&', config.getString("Damage-Message"));
+        rm = ChatColor.translateAlternateColorCodes('&', config.getString("Regeneration-Message"));
         y = config.getInt("y");
+        sneak = config.getBoolean("Sneaking");
         scheduler.cancelTasks(plugin);
         hologramsAPI.removeHologram();
     }

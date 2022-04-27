@@ -5,8 +5,11 @@ types:
   Players: true
 #COOLDOWN IN SECONDS
 cooldown: 1
-#MESSAGE
-message: "&c-&a%EDAMAGE%"
+#MESSAGES
+Damage-Message: "&c-&a%EDAMAGE%"
+Regeneration-Message: "&a+&7[&c%EHEALTH%&7]"
 #Y-CORDINATION / IF YOU USE HOLOGRAPHIC-DISPLAYS PLUGIN IN THE CASE OF A PLAYER RECOMMENDED IS 3/
 #ALSO IF YOU DON'T USE HOLOGRAPHIC-DISPLAYS PLUGIN RECOMMENDED FOR PLAYERS IS 2/1
 y: 1
+# if Sneaking is true - the hologram will created also if is false - the hologram will not created when the player is sneaking
+Sneaking: true

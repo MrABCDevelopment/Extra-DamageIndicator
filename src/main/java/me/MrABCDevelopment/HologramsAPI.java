@@ -5,7 +5,7 @@ import org.bukkit.Location;
 
 public interface HologramsAPI {
 
-    void createHologram(Location location, double Damage);
+    void createHologram(Location location, HealthChangeType healthChangeType, double EdiHolo);
 
     void removeHologram();
 

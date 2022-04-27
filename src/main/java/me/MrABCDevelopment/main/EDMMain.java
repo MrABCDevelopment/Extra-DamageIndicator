@@ -3,6 +3,7 @@ package me.MrABCDevelopment.main;
 import me.MrABCDevelopment.HologramsHandler;
 import me.MrABCDevelopment.commands.EdiReload;
 import me.MrABCDevelopment.events.Damage;
+import me.MrABCDevelopment.events.Regen;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.PluginManager;
@@ -12,6 +13,7 @@ public class EDMMain extends JavaPlugin {
     private static EDMMain plugin;
     private Damage damage;
     private HologramsHandler hologramsHandler;
+    private Regen regen;
 
     public static EDMMain getInstance() {
         return plugin;
@@ -23,7 +25,7 @@ public class EDMMain extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         PluginManager pm = Bukkit.getServer().getPluginManager();
-        if(pm.getPlugin("HolographicDisplays") == null) {
+        if (pm.getPlugin("HolographicDisplays") == null) {
             //return;
         } else {
             Bukkit.getLogger().info("Plugin HolographicDisplays jest aktywny!");
@@ -32,15 +34,16 @@ public class EDMMain extends JavaPlugin {
         isCitizens = pm.getPlugin("Citizens") != null;
         this.saveDefaultConfig();
         new EdiReload(this);
+        regen = new Regen(this);
         hologramsHandler = new HologramsHandler(this);
         damage = new Damage(this);
     }
 
     @Override
     public void onDisable() {
-        if(HologramsHandler.ArmorStands.isEmpty()) return;
+        if (HologramsHandler.ArmorStands.isEmpty()) return;
         HologramsHandler.ArmorStands.forEach((entity, l) -> {
-            if(l < System.currentTimeMillis()) {
+            if (l < System.currentTimeMillis()) {
                 ((LivingEntity) entity).remove();
                 ((LivingEntity) entity).damage(999);
             }
@@ -51,4 +54,5 @@ public class EDMMain extends JavaPlugin {
     public HologramsHandler getHologramsHandler() {
         return hologramsHandler;
     }
+
 }

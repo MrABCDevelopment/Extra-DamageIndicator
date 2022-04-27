@@ -1,7 +1,9 @@
 package me.MrABCDevelopment.holograms;
 
+import me.MrABCDevelopment.HealthChangeType;
 import me.MrABCDevelopment.HologramsAPI;
 import me.MrABCDevelopment.HologramsHandler;
+import me.MrABCDevelopment.events.Regen;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
@@ -15,12 +17,15 @@ public class DefaultHolograms implements HologramsAPI {
     BukkitScheduler scheduler = Bukkit.getScheduler();
 
     @Override
-    public void createHologram(Location location, double Damage) {
+    public void createHologram(Location location, HealthChangeType healthChangeType, double EdiHolo) {
         Entity entity = location.getWorld().spawnEntity(location.clone().add(0, HologramsHandler.y, 0), EntityType.ARMOR_STAND);
         ((ArmorStand) entity).setVisible(false);
         ((ArmorStand) entity).isSmall();
         ((ArmorStand) entity).setCustomNameVisible(true);;
-        entity.setCustomName(HologramsHandler.m.replace("%EDAMAGE%", String.valueOf(Damage)));
+        if(healthChangeType == HealthChangeType.DAMAGE)
+            entity.setCustomName(HologramsHandler.dm.replace("%EDAMAGE%", String.valueOf(EdiHolo)));
+        else if(healthChangeType == HealthChangeType.REGENERATION)
+            entity.setCustomName(HologramsHandler.rm.replace("%EHEALTH%", String.valueOf(EdiHolo)));
         ((ArmorStand)entity).setGravity(false);
         HologramsHandler.ArmorStands.put((ArmorStand) entity, System.currentTimeMillis());
     }
