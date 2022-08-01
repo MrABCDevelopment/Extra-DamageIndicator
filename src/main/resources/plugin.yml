@@ -1,11 +1,11 @@
-main: me.MrABCDevelopment.main.EDMMain
+main: me.mrabcdevelopment.github.edi.EDIMain
 name: Extra-DamageIndicator
-version: 1.1.0
+version: 1.2.0
 Author: MrABCDevelopment
 softdepend: [HolographicDisplays]
 
 commands:
-  EdiReload:
-    permission: EDI.reload
+  extradamageindicator:
+    aliases: [extradi, edamageindicator, edi, edindicator, damageindicator]
+    permission: edi.command
     permission-message: You do not have permission to use this command!
-
