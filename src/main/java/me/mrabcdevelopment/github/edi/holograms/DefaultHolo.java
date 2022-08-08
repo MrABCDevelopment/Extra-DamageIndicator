@@ -20,7 +20,7 @@ public class DefaultHolo implements IHologram {
         else if(healthChangeType == HealthChangeType.REGENERATION)
             entity.setCustomName(Settings.regenerationMessageHolo.replace("%health%", String.valueOf(health)));
         ((ArmorStand)entity).setGravity(false);
-        ((ArmorStand) entity).setMarker(false);
+        ((ArmorStand) entity).setMarker(true);
         Bukkit.getScheduler().runTaskLaterAsynchronously(EDIMain.getInstance(), new Runnable() {
             @Override
             public void run() {
