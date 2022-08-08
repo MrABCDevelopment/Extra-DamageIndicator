@@ -8,12 +8,13 @@ import me.mrabcdevelopment.github.edi.api.HealthChangeType;
 import me.mrabcdevelopment.github.edi.api.IHologram;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 public class HolographicDisplaysHolo implements IHologram {
 
     @Override
-    public void createHologram(Player player, Location location, HealthChangeType healthChangeType, double health) {
+    public void createHologram(Location location, HealthChangeType healthChangeType, double health) {
         String healthText = null;
         if(healthChangeType == HealthChangeType.DAMAGE)
             healthText = Settings.damageMessageHolo.replaceAll("%damage%", String.valueOf(health));
@@ -23,7 +24,10 @@ public class HolographicDisplaysHolo implements IHologram {
         Hologram holo = HologramsAPI.createHologram(EDIMain.getInstance(), location.add(0,Settings.addYCoordinates,0));
         holo.appendTextLine(healthText);
         holo.getVisibilityManager().setVisibleByDefault(false);
-        holo.getVisibilityManager().showTo(player);
+        for(Entity entity : location.getWorld().getNearbyEntities(location, 8, 8, 8)) {
+            if(entity instanceof Player)
+                holo.getVisibilityManager().showTo((Player) entity);
+        }
         Bukkit.getScheduler().runTaskLaterAsynchronously(EDIMain.getInstance(), new Runnable() {
             @Override
             public void run() {

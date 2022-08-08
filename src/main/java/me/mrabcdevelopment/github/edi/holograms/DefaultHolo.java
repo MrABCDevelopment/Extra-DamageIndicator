@@ -10,7 +10,7 @@ import org.bukkit.entity.*;
 
 public class DefaultHolo implements IHologram {
     @Override
-    public void createHologram(Player player, Location location, HealthChangeType healthChangeType, double health) {
+    public void createHologram(Location location, HealthChangeType healthChangeType, double health) {
         Entity entity = location.getWorld().spawnEntity(location.clone().add(0, Settings.addYCoordinates, 0), EntityType.ARMOR_STAND);
         ((ArmorStand) entity).setVisible(false);
         ((ArmorStand) entity).isSmall();

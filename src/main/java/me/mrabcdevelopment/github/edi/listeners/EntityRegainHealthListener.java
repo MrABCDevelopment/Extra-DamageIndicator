@@ -30,13 +30,12 @@ public class EntityRegainHealthListener implements Listener {
             return;
         }
         if(Settings.regenerationMessageHolo == null || Settings.regenerationMessageHolo.equalsIgnoreCase("")) return;
-        if(!(e.getEntity() instanceof Player)) return;
         if(e.getEntity() instanceof Player && ((Player) e.getEntity()).isSneaking()) {
             if(!Settings.sneaking)
                 return;
-            EDIMain.getInstance().getHologramsHandler().getHologram().createHologram((Player)e.getEntity(), e.getEntity().getLocation(), HealthChangeType.REGENERATION, Math.floor(e.getAmount()));
+            EDIMain.getInstance().getHologramsHandler().getHologram().createHologram(e.getEntity().getLocation(), HealthChangeType.REGENERATION, Math.floor(e.getAmount()));
         } else {
-            EDIMain.getInstance().getHologramsHandler().getHologram().createHologram((Player)e.getEntity(), e.getEntity().getLocation(), HealthChangeType.REGENERATION, Math.floor(e.getAmount()));
+            EDIMain.getInstance().getHologramsHandler().getHologram().createHologram(e.getEntity().getLocation(), HealthChangeType.REGENERATION, Math.floor(e.getAmount()));
         }
     }
 

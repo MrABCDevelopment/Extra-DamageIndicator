@@ -41,7 +41,7 @@ public class EntityDamageListener implements Listener {
             if(!Settings.sneaking)
                 return;
         }
-        EDIMain.getInstance().getHologramsHandler().getHologram().createHologram((Player) event.getDamager(), event.getEntity().getLocation(), HealthChangeType.DAMAGE, Math.floor(event.getDamage()));
+        EDIMain.getInstance().getHologramsHandler().getHologram().createHologram(event.getEntity().getLocation(), HealthChangeType.DAMAGE, Math.floor(event.getDamage()));
     }
 
 }

@@ -14,7 +14,7 @@ public class DecentHologramsHolo implements IHologram {
     private HologramManager hologramManager = new HologramManager();
 
     @Override
-    public void createHologram(Player player, Location location, HealthChangeType healthChangeType, double health) {
+    public void createHologram(Location location, HealthChangeType healthChangeType, double health) {
         String healthText = null;
         if(healthChangeType == HealthChangeType.DAMAGE)
             healthText = Settings.damageMessageHolo.replaceAll("%damage%", String.valueOf(health));
