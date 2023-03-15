@@ -1,7 +1,7 @@
-main: me.mrabcdevelopment.github.edi.EDIMain
+main: me.dreamdevs.github.edi.EDIMain
 name: Extra-DamageIndicator
-version: 1.2.1
-Author: MrABCDevelopment
+version: ${project.version}
+Author: DreamDevs
 softdepend: [HolographicDisplays, DecentHolograms]
 
 commands:

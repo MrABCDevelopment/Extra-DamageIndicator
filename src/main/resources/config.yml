@@ -1,9 +1,11 @@
-# Extra-DamageIndicator v1.2.0
+# Extra-DamageIndicator v1.3.0
 # Set which type of mobs has enabled/disabled holograms.
 types:
   Mob: true
   Animals: true
   Players: true
+# It checks update every 10 minutes.
+update-checker: true
 # How long hologram stay in the world in seconds. (MUST BE INTEGER!)
 cooldown: 1
 # All plugins that are supported by Extra-DamageIndicator
