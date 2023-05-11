@@ -13,5 +13,4 @@ me\dreamdevs\github\edi\api\IHologram.class
 me\dreamdevs\github\edi\holograms\DecentHologramsHolo.class
 me\dreamdevs\github\edi\commands\ArgumentCommand.class
 me\dreamdevs\github\edi\EDIMain.class
-me\dreamdevs\github\edi\holograms\HolographicDisplaysHolo$1.class
 me\dreamdevs\github\edi\ColourUtil.class

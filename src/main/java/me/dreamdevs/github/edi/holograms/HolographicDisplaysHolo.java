@@ -28,12 +28,7 @@ public class HolographicDisplaysHolo implements IHologram {
             if(entity instanceof Player)
                 holo.getVisibilityManager().showTo((Player) entity);
         }
-        Bukkit.getScheduler().runTaskLaterAsynchronously(EDIMain.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-                holo.delete();
-            }
-        }, Settings.cooldown);
+        Bukkit.getScheduler().runTaskLaterAsynchronously(EDIMain.getInstance(), holo::delete, Settings.cooldown);
     }
 
 }

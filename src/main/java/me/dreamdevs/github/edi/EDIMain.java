@@ -18,7 +18,7 @@ public class EDIMain extends JavaPlugin {
         new Settings(this);
 
         this.commandHandler = new CommandHandler(this);
-        this.hologramsHandler = new HologramsHandler(this);
+        this.hologramsHandler = new HologramsHandler();
 
         getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
         getServer().getPluginManager().registerEvents(new EntityRegainHealthListener(), this);
@@ -27,14 +27,14 @@ public class EDIMain extends JavaPlugin {
                 Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> new UpdateChecker(EDIMain.getInstance(), 101443).getVersion(version -> {
                 if (getDescription().getVersion().equals(version)) {
                     Bukkit.getConsoleSender().sendMessage("");
-                    Bukkit.getConsoleSender().sendMessage("&aThere is new Extra-DamageIndicator version!");
+                    Bukkit.getConsoleSender().sendMessage("&aYour version is up to date!");
                     Bukkit.getConsoleSender().sendMessage("&aYour version: " + getDescription().getVersion());
-                    Bukkit.getConsoleSender().sendMessage("&aNew version: " + version);
                     Bukkit.getConsoleSender().sendMessage("");
                 } else {
                     Bukkit.getConsoleSender().sendMessage("");
-                    Bukkit.getConsoleSender().sendMessage("&aYour version is up to date!");
+                    Bukkit.getConsoleSender().sendMessage("&aThere is new Extra-DamageIndicator version!");
                     Bukkit.getConsoleSender().sendMessage("&aYour version: " + getDescription().getVersion());
+                    Bukkit.getConsoleSender().sendMessage("&aNew version: " + version);
                     Bukkit.getConsoleSender().sendMessage("");
                 }
             }), 10L, 20 * 600);

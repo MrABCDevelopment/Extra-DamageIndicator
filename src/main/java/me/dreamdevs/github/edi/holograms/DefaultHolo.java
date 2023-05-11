@@ -23,7 +23,7 @@ public class DefaultHolo implements IHologram {
         ((ArmorStand) entity).setMarker(true);
         Bukkit.getScheduler().runTaskLaterAsynchronously(EDIMain.getInstance(), () -> {
             ((LivingEntity)entity).damage(999);
-            ((LivingEntity)entity).remove();
+            entity.remove();
         }, Settings.cooldown*20L);
     }
 

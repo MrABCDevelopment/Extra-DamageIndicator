@@ -8,7 +8,7 @@ import org.bukkit.Location;
 
 public class DecentHologramsHolo implements IHologram {
 
-    private HologramManager hologramManager = new HologramManager();
+    private final HologramManager hologramManager = new HologramManager();
 
     @Override
     public void createHologram(Location location, HealthChangeType healthChangeType, double health) {

@@ -5,10 +5,8 @@ import org.bukkit.Bukkit;
 public class HologramsHandler {
 
     private IHologram iHologram;
-    private EDIMain plugin;
 
-    public HologramsHandler(EDIMain plugin) {
-        this.plugin = plugin;
+    public HologramsHandler() {
         try {
             Class<? extends IHologram> hapi = null;
             if (Settings.supportedPlugins.get("HolographicDisplays") && Bukkit.getPluginManager().getPlugin("HolographicDisplays") != null) {
