@@ -9,7 +9,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class EDIMain extends JavaPlugin {
     private static EDIMain instance;
     private HologramsHandler hologramsHandler;
-    private CommandHandler commandHandler;
     @Override
     public void onEnable() {
         instance = this;
@@ -17,7 +16,7 @@ public class EDIMain extends JavaPlugin {
 
         new Settings(this);
 
-        this.commandHandler = new CommandHandler(this);
+        new CommandHandler(this);
         this.hologramsHandler = new HologramsHandler();
 
         getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);

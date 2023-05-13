@@ -2,13 +2,8 @@ package me.dreamdevs.github.edi;
 
 import net.md_5.bungee.api.ChatColor;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class ColourUtil {
 
@@ -21,16 +16,6 @@ public class ColourUtil {
         }
         string = ChatColor.translateAlternateColorCodes('&', string); // Translates any & codes too
         return string;
-    }
-
-    public static List<String> colouredLore(String... lore) {
-        if(lore == null) return new ArrayList<>();
-        return Arrays.stream(lore).map(ColourUtil::colorize).collect(Collectors.toList());
-    }
-
-    public static List<String> colouredLore(List<String> lore) {
-        if(lore == null) return new ArrayList<>();
-        return lore.stream().filter(Objects::nonNull).map(ColourUtil::colorize).collect(Collectors.toList());
     }
 
 }
