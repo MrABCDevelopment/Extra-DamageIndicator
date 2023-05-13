@@ -4,6 +4,9 @@ import me.dreamdevs.github.edi.commands.CommandHandler;
 import me.dreamdevs.github.edi.listeners.EntityDamageListener;
 import me.dreamdevs.github.edi.listeners.EntityRegainHealthListener;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class EDIMain extends JavaPlugin {
@@ -37,6 +40,19 @@ public class EDIMain extends JavaPlugin {
                     Bukkit.getConsoleSender().sendMessage("");
                 }
             }), 10L, 20 * 600);
+        }
+    }
+
+    @Override
+    public void onDisable() {
+        for (World w : Bukkit.getWorlds()) {
+            for(Entity e: w.getEntities()) {
+                if(e instanceof ArmorStand) {
+                    if(e.hasMetadata("holo")) {
+                        e.remove();
+                    }
+                }
+            }
         }
     }
 
