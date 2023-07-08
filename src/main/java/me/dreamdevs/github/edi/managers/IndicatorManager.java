@@ -3,15 +3,11 @@ package me.dreamdevs.github.edi.managers;
 import me.dreamdevs.github.edi.EDIMain;
 import me.dreamdevs.github.edi.api.HealthChangeType;
 import me.dreamdevs.github.edi.api.events.ShowActionBarIndicatorEvent;
-import me.dreamdevs.github.edi.api.events.ShowBossBarIndicatorEvent;
 import me.dreamdevs.github.edi.utils.ColourUtil;
-import me.dreamdevs.github.edi.utils.Util;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
-import org.bukkit.boss.*;
 import org.bukkit.entity.*;
 import org.bukkit.metadata.FixedMetadataValue;
 

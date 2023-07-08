@@ -5,7 +5,6 @@ me\dreamdevs\github\edi\managers\IndicatorManager.class
 me\dreamdevs\github\edi\api\menu\settings\SettingsMenu$12.class
 me\dreamdevs\github\edi\commands\subcmds\Reload.class
 me\dreamdevs\github\edi\api\HealthChangeType.class
-me\dreamdevs\github\edi\api\events\ShowBossBarIndicatorEvent.class
 me\dreamdevs\github\edi\api\menu\StaticMenuItem.class
 me\dreamdevs\github\edi\api\events\ClickInventoryEvent.class
 me\dreamdevs\github\edi\commands\CommandHandler.class
