@@ -1,8 +1,8 @@
 package me.dreamdevs.github.edi.commands;
 
-import me.dreamdevs.github.edi.ColourUtil;
+import me.dreamdevs.github.edi.commands.subcmds.Settings;
+import me.dreamdevs.github.edi.utils.ColourUtil;
 import me.dreamdevs.github.edi.EDIMain;
-import me.dreamdevs.github.edi.commands.subcmds.Info;
 import me.dreamdevs.github.edi.commands.subcmds.Reload;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -16,14 +16,12 @@ import java.util.List;
 
 public class CommandHandler implements TabExecutor {
 
-    private EDIMain plugin;
-    private HashMap<String, Class<? extends ArgumentCommand>> arguments;
+    private final HashMap<String, Class<? extends ArgumentCommand>> arguments;
 
     public CommandHandler(EDIMain plugin) {
-        this.plugin = plugin;
         this.arguments = new HashMap<>();
         this.arguments.put("reload", Reload.class);
-        this.arguments.put("info", Info.class);
+        this.arguments.put("settings", Settings.class);
         plugin.getCommand("extradamageindicator").setExecutor(this);
         plugin.getCommand("extradamageindicator").setTabCompleter(this);
     }

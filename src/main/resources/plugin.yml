@@ -1,8 +1,8 @@
 main: me.dreamdevs.github.edi.EDIMain
-name: Extra-DamageIndicator
+name: ${project.artifactId}
 version: ${project.version}
-Author: DreamDevs
-softdepend: [HolographicDisplays, DecentHolograms]
+author: DreamDevs
+api-version: 1.13
 
 commands:
   extradamageindicator:

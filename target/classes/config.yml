@@ -1,22 +1,45 @@
-# Extra-DamageIndicator v1.3.0
-# Set which type of mobs has enabled/disabled holograms.
-types:
-  Mob: true
-  Animals: true
-  Players: true
-# It checks update every 10 minutes.
-update-checker: true
-# How long hologram stay in the world in seconds. (MUST BE INTEGER!)
-cooldown: 1
-# All plugins that are supported by Extra-DamageIndicator
-hooks:
-  HolographicDisplays: false
-  DecentHolograms: false
-# If you want display hologram while player is sneaking, set this option to true, otherwise set this to false.
-sneaking: true
-# Y-CORDINATION / IF YOU USE HOLOGRAPHIC-DISPLAYS PLUGIN IN THE CASE OF A PLAYER RECOMMENDED IS 3/
-# ALSO IF YOU DON'T USE HOLOGRAPHIC-DISPLAYS PLUGIN RECOMMENDED FOR PLAYERS IS 2/1
-add-y-coord: 1
-# Messages
-Damage-Message: "&c-&a%damage%"
-Regeneration-Message: "&a+&7[&c%health%&7]"
+settings:
+  # This represents seconds that hologram will stay (Must be positive integer)
+  hologram-stay: 1
+
+  # It checks update every 10 minutes
+  update-checker: true
+
+  # Should holograms display while player is sneaking?
+  show-while-sneaking: true
+
+  # Should holograms display when entity will fall from the height?
+  show-when-fell-from-height: true
+
+  # Should holograms display while entity is burning?
+  show-while-burning: true
+
+  # Should holograms display when entity is in dragon breath?
+  show-while-in-dragon-breath: true
+
+  # Should holograms display when entity has poison?
+  show-while-has-poison: true
+
+  # Show NPCs health changes from Citizens
+  show-npc-health-changes: true
+
+  # Should be health bar be represented also on action bar?
+  show-action-bar: true
+
+  # What kind of mobs should be affected by hologram indicators
+  hostile: true # Zombies, Skeletons, etc.
+  animals: true # Cows, chickens, etc.
+  players: true # Just players
+
+  # Additional y's coordinates to show hologram indicators
+  y-coord-addition: 1.0
+
+messages:
+  loaded-configuration: "&aSuccess! Loaded %AMOUNT_MESSAGES% messages and %AMOUNT_SETTINGS% settings!"
+
+  hologram-damage-message: "&c-&a&l%AMOUNT%"
+  hologram-regeneration-message: "&a+&a&l%AMOUNT%"
+
+  not-player: '&cOnly players can perform this command!'
+
+  settings-menu-title: '&c&lSETTINGS'

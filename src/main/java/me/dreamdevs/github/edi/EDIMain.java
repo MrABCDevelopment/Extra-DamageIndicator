@@ -1,43 +1,52 @@
 package me.dreamdevs.github.edi;
 
+import lombok.Getter;
 import me.dreamdevs.github.edi.commands.CommandHandler;
-import me.dreamdevs.github.edi.listeners.EntityDamageListener;
-import me.dreamdevs.github.edi.listeners.EntityRegainHealthListener;
+import me.dreamdevs.github.edi.listeners.EntityHealthChangeListeners;
+import me.dreamdevs.github.edi.listeners.InventoryListener;
+import me.dreamdevs.github.edi.managers.IndicatorManager;
+import me.dreamdevs.github.edi.managers.SettingsManager;
+import me.dreamdevs.github.edi.utils.Util;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@Getter
 public class EDIMain extends JavaPlugin {
-    private static EDIMain instance;
-    private HologramsHandler hologramsHandler;
+
+    private @Getter static EDIMain instance;
+    private SettingsManager settingsManager;
+    private IndicatorManager indicatorManager;
+
     @Override
     public void onEnable() {
         instance = this;
         this.saveDefaultConfig();
 
-        new Settings(this);
+        this.settingsManager = new SettingsManager(this);
+        this.indicatorManager = new IndicatorManager();
 
         new CommandHandler(this);
-        this.hologramsHandler = new HologramsHandler();
 
-        getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
-        getServer().getPluginManager().registerEvents(new EntityRegainHealthListener(), this);
+        getServer().getPluginManager().registerEvents(new EntityHealthChangeListeners(), this);
+        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
 
-        if(getConfig().getBoolean("update-checker")) {
-                Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> new UpdateChecker(EDIMain.getInstance(), 101443).getVersion(version -> {
+        new Metrics(this, 19021);
+
+        if(getSettingsManager().getValueAsBoolean("update-checker")) {
+            Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> new UpdateChecker(EDIMain.getInstance(), 101443).getVersion(version -> {
                 if (getDescription().getVersion().equals(version)) {
-                    Bukkit.getConsoleSender().sendMessage("");
-                    Bukkit.getConsoleSender().sendMessage("&aYour version is up to date!");
-                    Bukkit.getConsoleSender().sendMessage("&aYour version: " + getDescription().getVersion());
-                    Bukkit.getConsoleSender().sendMessage("");
+                    Util.sendPluginMessage("");
+                    Util.sendPluginMessage("&aYour version is up to date!");
+                    Util.sendPluginMessage("&aYour version: " + getDescription().getVersion());
+                    Util.sendPluginMessage("");
                 } else {
-                    Bukkit.getConsoleSender().sendMessage("");
-                    Bukkit.getConsoleSender().sendMessage("&aThere is new Extra-DamageIndicator version!");
-                    Bukkit.getConsoleSender().sendMessage("&aYour version: " + getDescription().getVersion());
-                    Bukkit.getConsoleSender().sendMessage("&aNew version: " + version);
-                    Bukkit.getConsoleSender().sendMessage("");
+                    Util.sendPluginMessage("");
+                    Util.sendPluginMessage("&aThere is new Extra-DamageIndicator version!");
+                    Util.sendPluginMessage("&aYour version: " + getDescription().getVersion());
+                    Util.sendPluginMessage("&aNew version: " + version);
+                    Util.sendPluginMessage("");
                 }
             }), 10L, 20 * 600);
         }
@@ -45,22 +54,14 @@ public class EDIMain extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        for (World w : Bukkit.getWorlds()) {
-            for(Entity e: w.getEntities()) {
-                if(e instanceof ArmorStand) {
-                    if(e.hasMetadata("holo")) {
-                        e.remove();
-                    }
-                }
-            }
-        }
+        Bukkit.getWorlds().forEach(world -> world.getEntities().stream()
+                .filter(ArmorStand.class::isInstance)
+                .filter(entity -> entity.hasMetadata("holo"))
+                .forEach(Entity::remove));
     }
 
     public static EDIMain getInstance() {
         return instance;
     }
 
-    public HologramsHandler getHologramsHandler() {
-        return hologramsHandler;
-    }
 }
