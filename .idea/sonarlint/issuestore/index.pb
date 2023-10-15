@@ -7,8 +7,6 @@ b
 2src/main/java/me/dreamdevs/github/edi/Metrics.java,1\2\12185b67b0764e9c3a6a29d208900221168acf8b
 e
 5src/main/java/me/dreamdevs/github/edi/utils/Util.java,e\9\e915d4a97ee02ceed2a98b9a045a89acced75b41
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 o
 ?src/main/java/me/dreamdevs/github/edi/api/HealthChangeType.java,5\8\584cd1bcf634736b765ee25d5e4c59ddf3bc9230
 l
@@ -35,8 +33,6 @@ Dsrc/main/java/me/dreamdevs/github/edi/commands/subcmds/Settings.java,4\4\4456c
 Qsrc/main/java/me/dreamdevs/github/edi/api/events/ShowActionBarIndicatorEvent.java,f\a\fadc42ad5f1278c5426f94814be23097b8e9942c
 b
 2src/main/java/me/dreamdevs/github/edi/EDIMain.java,d\5\d5ae56ab1ada4eedf35957c3e084b04496237614
-s
-Csrc/main/java/me/dreamdevs/github/edi/managers/SettingsManager.java,f\1\f107993cd84a6044647bc2e8bd9793469056087e
 €
 Psrc/main/java/me/dreamdevs/github/edi/listeners/EntityHealthChangeListeners.java,0\c\0c5b1fa40b3e33c14808549275afc0f93808f605
 y
@@ -44,3 +40,9 @@ Isrc/main/java/me/dreamdevs/github/edi/api/menu/settings/SettingsMenu.java,f\1\
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+t
+Dsrc/main/java/me/dreamdevs/github/edi/managers/IndicatorManager.java,f\2\f2765eb74e6e178fe90882854b258c931ac2a71a
+s
+Csrc/main/java/me/dreamdevs/github/edi/managers/SettingsManager.java,f\1\f107993cd84a6044647bc2e8bd9793469056087e

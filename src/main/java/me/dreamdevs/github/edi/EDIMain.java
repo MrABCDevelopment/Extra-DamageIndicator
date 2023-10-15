@@ -48,7 +48,7 @@ public class EDIMain extends JavaPlugin {
                     Util.sendPluginMessage("&aNew version: " + version);
                     Util.sendPluginMessage("");
                 }
-            }), 10L, 20 * 600);
+            }), 10L, 20L * 600);
         }
     }
 
@@ -58,10 +58,6 @@ public class EDIMain extends JavaPlugin {
                 .filter(ArmorStand.class::isInstance)
                 .filter(entity -> entity.hasMetadata("holo"))
                 .forEach(Entity::remove));
-    }
-
-    public static EDIMain getInstance() {
-        return instance;
     }
 
 }

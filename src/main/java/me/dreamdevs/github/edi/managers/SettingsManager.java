@@ -39,7 +39,7 @@ public class SettingsManager {
         ConfigurationSection sectionSettings = config.getConfigurationSection("settings");
         sectionSettings.getKeys(false).forEach(s -> settings.put(s, sectionSettings.get(s)));
 
-        Util.sendPluginMessage(messages.get("loaded-configuration").replaceAll("%AMOUNT_MESSAGES%", Integer.toString(messages.size())).replaceAll("%AMOUNT_SETTINGS%", Integer.toString(settings.size())));
+        Util.sendPluginMessage(messages.get("loaded-configuration").replace("%AMOUNT_MESSAGES%", Integer.toString(messages.size())).replace("%AMOUNT_SETTINGS%", Integer.toString(settings.size())));
     }
 
     public String getMessage(String key) {

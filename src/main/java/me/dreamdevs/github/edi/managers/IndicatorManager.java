@@ -22,9 +22,9 @@ public class IndicatorManager
         entity.setMetadata("holo", new FixedMetadataValue(EDIMain.getInstance(), "ediholo"));
         entity.setCustomNameVisible(true);
         if(healthChangeType == HealthChangeType.DAMAGE)
-            entity.setCustomName(EDIMain.getInstance().getSettingsManager().getMessage("hologram-damage-message").replaceAll("%AMOUNT%", String.valueOf(health)));
+            entity.setCustomName(EDIMain.getInstance().getSettingsManager().getMessage("hologram-damage-message").replace("%AMOUNT%", String.valueOf(health)));
         else if(healthChangeType == HealthChangeType.REGENERATION)
-            entity.setCustomName(EDIMain.getInstance().getSettingsManager().getMessage("hologram-regeneration-message").replaceAll("%AMOUNT%", String.valueOf(health)));
+            entity.setCustomName(EDIMain.getInstance().getSettingsManager().getMessage("hologram-regeneration-message").replace("%AMOUNT%", String.valueOf(health)));
         entity.setGravity(false);
         entity.setMarker(true);
         Bukkit.getScheduler().runTaskLaterAsynchronously(EDIMain.getInstance(), () -> {
@@ -36,7 +36,7 @@ public class IndicatorManager
     public void showActionBar(Player player, LivingEntity target, double damage) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        double percentage = Math.floor((target.getHealth()-damage)/target.getMaxHealth()*100);
+        double percentage = Math.floor((target.getHealth()-damage) / target.getMaxHealth()*100);
         for(int x = 0; x<10; x++) {
             if(x < (percentage/10)) {
                 stringBuilder.append("&a■");

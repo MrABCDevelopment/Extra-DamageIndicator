@@ -1,5 +1,6 @@
 package me.dreamdevs.github.edi.utils;
 
+import lombok.experimental.UtilityClass;
 import net.md_5.bungee.api.ChatColor;
 
 import java.util.ArrayList;
@@ -9,7 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class ColourUtil {
+@UtilityClass
+public final class ColourUtil {
 
     public static String colorize(String string) {
         if(string == null) return null;

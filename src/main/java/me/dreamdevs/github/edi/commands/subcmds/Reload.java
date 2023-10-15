@@ -16,7 +16,7 @@ public class Reload implements ArgumentCommand {
                 .filter(ArmorStand.class::isInstance)
                 .filter(entity -> entity.hasMetadata("holo"))
                 .forEach(Entity::remove));
-        commandSender.sendMessage(EDIMain.getInstance().getSettingsManager().getMessage("loaded-configuration").replaceAll("%AMOUNT_MESSAGES%", Integer.toString(EDIMain.getInstance().getSettingsManager().getMessages().size())).replaceAll("%AMOUNT_SETTINGS%", Integer.toString(EDIMain.getInstance().getSettingsManager().getSettings().size())));
+        commandSender.sendMessage(EDIMain.getInstance().getSettingsManager().getMessage("loaded-configuration").replace("%AMOUNT_MESSAGES%", Integer.toString(EDIMain.getInstance().getSettingsManager().getMessages().size())).replaceAll("%AMOUNT_SETTINGS%", Integer.toString(EDIMain.getInstance().getSettingsManager().getSettings().size())));
         return true;
     }
 
