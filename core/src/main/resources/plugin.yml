@@ -1,0 +1,11 @@
+main: me.dreamdevs.damageindicator.ExtraDamageIndicatorMain
+name: ${project.parent.artifactId}
+version: ${project.version}
+author: DreamDevs
+api-version: 1.13
+
+commands:
+  extradamageindicator:
+    aliases: [extradi, edamageindicator, edi, edindicator, damageindicator]
+    permission: extradamageindicator.command
+    permission-message: You do not have permission to use this command!

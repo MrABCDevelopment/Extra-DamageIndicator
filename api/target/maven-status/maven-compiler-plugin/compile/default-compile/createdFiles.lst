@@ -1,0 +1,11 @@
+me\dreamdevs\damageindicator\api\ArgumentCommand.class
+me\dreamdevs\damageindicator\api\indicators\IHologramIndicator.class
+me\dreamdevs\damageindicator\api\indicators\HealthChangeType.class
+me\dreamdevs\damageindicator\api\utils\VersionUtil.class
+me\dreamdevs\damageindicator\api\Config.class
+me\dreamdevs\damageindicator\api\events\ShowActionBarIndicatorEvent.class
+me\dreamdevs\damageindicator\api\events\ShowProjectileIndicatorEvent.class
+me\dreamdevs\damageindicator\api\utils\Util.class
+me\dreamdevs\damageindicator\api\DamageIndicatorApi.class
+me\dreamdevs\damageindicator\api\utils\ColourUtil.class
+me\dreamdevs\damageindicator\api\Language.class
