@@ -10,14 +10,20 @@ import me.dreamdevs.damageindicator.api.utils.ColourUtil;
 import net.minecraft.network.chat.IChatBaseComponent;
 import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy;
+import net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata;
 import net.minecraft.network.protocol.game.PacketPlayOutSpawnEntity;
 import net.minecraft.world.entity.Display;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.decoration.EntityArmorStand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.craftbukkit.v1_20_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_20_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_20_R3.entity.CraftArmorStand;
 import org.bukkit.craftbukkit.v1_20_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_20_R3.entity.CraftTextDisplay;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -29,22 +35,25 @@ public class HologramIndicator implements IHologramIndicator {
 
 		Location location = target.getEyeLocation();
 
-		Display.TextDisplay textDisplay = new Display.TextDisplay(EntityTypes.aY, craftWorld.getHandle());
+		EntityArmorStand entityArmorStand = new EntityArmorStand(craftWorld.getHandle(), location.getX(), location.getY(), location.getZ());
+		entityArmorStand.getBukkitEntity().setGravity(false);
+		entityArmorStand.getBukkitEntity().setInvulnerable(true);
+		((CraftArmorStand)entityArmorStand.getBukkitEntity()).setMarker(true);
+		((CraftArmorStand)entityArmorStand.getBukkitEntity()).setInvisible(true);
+		entityArmorStand.getBukkitEntity().setCustomNameVisible(true);
 
 		if (healthChangeType == HealthChangeType.DAMAGE) {
-			textDisplay.c(IChatBaseComponent.ChatSerializer.a("{\"text\":\"" + Language.INDICATOR_HOLOGRAM_DAMAGE_MESSAGE.toString().replace("%AMOUNT%", String.valueOf(health)) + "\"}"));
+			entityArmorStand.getBukkitEntity().setCustomName(Language.INDICATOR_HOLOGRAM_DAMAGE_MESSAGE.toString());
 		}
 		if (healthChangeType == HealthChangeType.REGENERATION) {
-			textDisplay.c(IChatBaseComponent.ChatSerializer.a("{\"text\":\"" + Language.INDICATOR_HOLOGRAM_REGENERATION_MESSAGE.toString().replace("%AMOUNT%", String.valueOf(health)) + "\"}"));
+			entityArmorStand.getBukkitEntity().setCustomName(Language.INDICATOR_HOLOGRAM_REGENERATION_MESSAGE.toString());
 		}
 
-		textDisplay.a(location.getX(), location.getY(), location.getZ(), location.getPitch(), location.getYaw());
-
-		PacketPlayOutSpawnEntity packetPlayOutSpawnEntity = new PacketPlayOutSpawnEntity(textDisplay, textDisplay.aj());
+		PacketPlayOutSpawnEntity packetPlayOutSpawnEntity = new PacketPlayOutSpawnEntity(entityArmorStand, entityArmorStand.aj());
 		Bukkit.getOnlinePlayers().forEach(player -> ((CraftPlayer)player).getHandle().c.a(packetPlayOutSpawnEntity, null));
 
 		Bukkit.getScheduler().runTaskLaterAsynchronously(DamageIndicatorApi.plugin, () -> {
-			PacketPlayOutEntityDestroy packetPlayOutEntityDestroy = new PacketPlayOutEntityDestroy(textDisplay.aj());
+			PacketPlayOutEntityDestroy packetPlayOutEntityDestroy = new PacketPlayOutEntityDestroy(entityArmorStand.aj());
 			Bukkit.getOnlinePlayers().forEach(player -> ((CraftPlayer)player).getHandle().c.a(packetPlayOutEntityDestroy, null));
 		}, Config.SETTINGS_HOLOGRAM_STAY.toInt()*20L);
 	}
