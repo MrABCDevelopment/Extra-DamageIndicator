@@ -10,13 +10,12 @@ import me.dreamdevs.damageindicator.api.utils.ColourUtil;
 import net.minecraft.network.chat.IChatBaseComponent;
 import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy;
+import net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata;
 import net.minecraft.network.protocol.game.PacketPlayOutSpawnEntity;
-import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.decoration.EntityArmorStand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.craftbukkit.v1_19_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_19_R3.entity.CraftArmorStand;
 import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
@@ -31,30 +30,30 @@ public class HologramIndicator implements IHologramIndicator {
 
 		Location location = target.getEyeLocation();
 
-		EntityArmorStand entityArmorStand = new EntityArmorStand(EntityTypes.d, craftWorld.getHandle());
-		CraftArmorStand craftArmorStand = new CraftArmorStand((CraftServer) Bukkit.getServer(), entityArmorStand);
+		EntityArmorStand entityArmorStand = new EntityArmorStand(craftWorld.getHandle(), location.getX(), location.getY(), location.getZ());
 
-		craftArmorStand.setGravity(false);
-		craftArmorStand.setVisible(false);
-		craftArmorStand.setCustomNameVisible(true);
-		craftArmorStand.setMarker(true);
+		entityArmorStand.getBukkitEntity().setGravity(false);
+		entityArmorStand.getBukkitEntity().setInvulnerable(true);
+		((CraftArmorStand)entityArmorStand.getBukkitEntity()).setMarker(true);
+		((CraftArmorStand)entityArmorStand.getBukkitEntity()).setInvisible(true);
+		entityArmorStand.getBukkitEntity().setCustomNameVisible(true);
 
 		if (healthChangeType == HealthChangeType.DAMAGE) {
-			craftArmorStand.setCustomName(Language.INDICATOR_HOLOGRAM_DAMAGE_MESSAGE.toString().replace("%AMOUNT%", String.valueOf(health)));
+			entityArmorStand.getBukkitEntity().setCustomName(Language.INDICATOR_HOLOGRAM_DAMAGE_MESSAGE.toString().replace("%AMOUNT%", String.valueOf(health)));
 		}
 		if (healthChangeType == HealthChangeType.REGENERATION) {
-			craftArmorStand.setCustomName(Language.INDICATOR_HOLOGRAM_REGENERATION_MESSAGE.toString().replace("%AMOUNT%", String.valueOf(health)));
+			entityArmorStand.getBukkitEntity().setCustomName(Language.INDICATOR_HOLOGRAM_REGENERATION_MESSAGE.toString().replace("%AMOUNT%", String.valueOf(health)));
 		}
 
-		entityArmorStand = craftArmorStand.getHandle();
-		entityArmorStand.a(location.getX(), location.getY(), location.getZ(), location.getPitch(), location.getYaw());
-
 		PacketPlayOutSpawnEntity packetPlayOutSpawnEntity = new PacketPlayOutSpawnEntity(entityArmorStand, entityArmorStand.af());
-		Bukkit.getOnlinePlayers().forEach(player -> ((CraftPlayer)player).getHandle().b.a(packetPlayOutSpawnEntity, null));
+		PacketPlayOutEntityMetadata packetPlayOutEntityMetadata = new PacketPlayOutEntityMetadata(entityArmorStand.af(), entityArmorStand.aj().b());
+		Bukkit.getOnlinePlayers().forEach(player -> {
+			((CraftPlayer)player).getHandle().b.a(packetPlayOutSpawnEntity, null);
+			((CraftPlayer)player).getHandle().b.a(packetPlayOutEntityMetadata, null);
+		});
 
-		EntityArmorStand finalEntityArmorStand = entityArmorStand;
 		Bukkit.getScheduler().runTaskLaterAsynchronously(DamageIndicatorApi.plugin, () -> {
-			PacketPlayOutEntityDestroy packetPlayOutEntityDestroy = new PacketPlayOutEntityDestroy(finalEntityArmorStand.af());
+			PacketPlayOutEntityDestroy packetPlayOutEntityDestroy = new PacketPlayOutEntityDestroy(entityArmorStand.af());
 			Bukkit.getOnlinePlayers().forEach(player -> ((CraftPlayer)player).getHandle().b.a(packetPlayOutEntityDestroy, null));
 		}, Config.SETTINGS_HOLOGRAM_STAY.toInt()*20L);
 	}
