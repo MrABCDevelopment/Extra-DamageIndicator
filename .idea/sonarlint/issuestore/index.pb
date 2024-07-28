@@ -84,7 +84,5 @@ l
 \v1_14_R1/src/main/java/me/dreamdevs/damageindicator/versions/v1_14_R1/HologramIndicator.java,1\5\15991988330af81109cd68bbf446d8f8950eade8
 @
 v1_14_R1/pom.xml,f\1\f18be55ab45f4f1315c5ccc30e4b6dca6f648f9a
-?
-v1_8_R2/pom.xml,d\3\d33f15117edb6fd41a1d2fc04d1cc476b9c477f1
-Š
-Zv1_8_R2/src/main/java/me/dreamdevs/damageindicator/versions/v1_8_R2/HologramIndicator.java,8\6\86a94e81542a7990b7e7c1d75637b30faa7da25b
+@
+v1_20_R2/pom.xml,c\a\ca915f4700e638231316d42ea19f7c1de232ea4b
