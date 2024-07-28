@@ -15,7 +15,6 @@
         <module name="v1_13_R2" />
         <module name="api" />
         <module name="v1_20_R1" />
-        <module name="v1_20_R2" />
         <module name="v1_8_R3" />
         <module name="v1_20_R3" />
       </profile>
@@ -23,6 +22,7 @@
     <bytecodeTargetLevel>
       <module name="v1" target="11" />
       <module name="v1_13_R1" target="11" />
+      <module name="v1_20_R2" target="11" />
       <module name="v1_8_R1" target="11" />
       <module name="v1_8_R2" target="18" />
       <module name="v1_9_R1" target="11" />

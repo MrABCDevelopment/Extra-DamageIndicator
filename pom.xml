@@ -20,12 +20,11 @@
         <module>v1_19_R3</module>
         <module>v1_20_R3</module>
         <module>v1_20_R1</module>
-        <module>v1_20_R2</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <build>
@@ -59,7 +58,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <release>18</release>
+                    <release>17</release>
                 </configuration>
             </plugin>
         </plugins>
